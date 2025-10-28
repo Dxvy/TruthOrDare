@@ -1,0 +1,17 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PartiePage } from './partie.page';
+
+describe('PartiePage', () => {
+  let component: PartiePage;
+  let fixture: ComponentFixture<PartiePage>;
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PartiePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
