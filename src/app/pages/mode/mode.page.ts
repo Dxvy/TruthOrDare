@@ -73,22 +73,25 @@ export class ModePage implements OnInit {
     this.checkPremiumStatus();
   }
 
-  async checkPremiumStatus() {
-    // Simulate an async check for premium status
-    this.isPremiumUnlocked = await new Promise<boolean>((resolve) => {
-      setTimeout(() => resolve(false), 500); // Change to true to simulate premium unlocked
-    });
+  checkPremiumStatus() {
+    // Vérifier si le mode premium est débloqué dans le localStorage
+    const isPremium = localStorage.getItem('isPremium');
+    this.isPremiumUnlocked = isPremium === 'true';
+
+    console.log('Statut premium vérifié:', this.isPremiumUnlocked);
   }
 
   async selectMode(mode: string) {
+    // Si c'est le mode hardcore et qu'il n'est pas débloqué, afficher l'alerte
     if (mode === 'hardcore' && !this.isPremiumUnlocked) {
       await this.showPremiumAlert();
       return;
     }
-    // Save the selected mode to local storage or session storage
+
+    // Sauvegarder le mode sélectionné
     localStorage.setItem('selectedMode', mode);
 
-    // Navigate to the game page with the selected mode as a query parameter
+    // Naviguer vers la page de jeu avec le mode sélectionné
     this.router.navigate(['/partie'], {
       queryParams: {mode}
     });
@@ -117,7 +120,6 @@ export class ModePage implements OnInit {
   }
 
   proceedToPayment() {
-    // TODO: Implémenter le paiement Stripe
     console.log('Redirection vers le paiement Stripe...');
     this.router.navigate(['/payment'], { queryParams: { mode: 'hardcore' } });
   }

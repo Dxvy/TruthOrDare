@@ -142,7 +142,6 @@ export class HomePage implements OnInit {
     if (this.players.length >= 2) {
       // save players to local storage
       localStorage.setItem('players', JSON.stringify(this.players));
-
       this.router.navigate(['/mode']);
     }
   }
