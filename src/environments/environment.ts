@@ -1,4 +1,3 @@
-
 export const environment = {
   production: false,
   firebase: {
@@ -8,6 +7,9 @@ export const environment = {
     storageBucket: "truthordare-5c66e.appspot.com",
     messagingSenderId: "186786243683",
     appId: "1:186786243683:web:5a09a47d9ac6e26b0d0456"
+  },
+  stripe: {
+    publicKey: "pk_test_pk_test_51SNVpqDRDj7m0JPPgoZjSzcSMBsfKbaZtIHTLHRrQq1gmjO2FUj6LuLbNwKBSHAVBeIn97ffAe2xhhTHNHJoE7e200cuLcmrFg"
   }
 };
 

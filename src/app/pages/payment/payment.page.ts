@@ -31,6 +31,7 @@ import {
 } from 'ionicons/icons';
 import { ThemeService } from '../../services/theme';
 import { loadStripe, Stripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-payment',
@@ -64,8 +65,8 @@ export class PaymentPage implements OnInit, OnDestroy {
   private elements: StripeElements | null = null;
   private cardElement: StripeCardElement | null = null;
 
-  // ⚠️ REMPLACEZ PAR VOTRE CLÉ PUBLIQUE STRIPE
-  private readonly stripePublicKey = 'pk_test_pk_test_51SNVpqDRDj7m0JPPgoZjSzcSMBsfKbaZtIHTLHRrQq1gmjO2FUj6LuLbNwKBSHAVBeIn97ffAe2xhhTHNHJoE7e200cuLcmrFg';
+  // Récupération de la clé publique depuis l'environnement
+  private readonly stripePublicKey = environment.stripe.publicKey;
 
   constructor(
     private router: Router,
