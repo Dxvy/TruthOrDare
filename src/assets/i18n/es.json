@@ -1,0 +1,25 @@
+{
+  "COMMON": {
+    "CANCEL": "Cancelar",
+    "CONFIRM": "Confirmar",
+    "SAVE": "Guardar",
+    "DELETE": "Eliminar",
+    "BACK": "Volver",
+    "NEXT": "Siguiente",
+    "LOADING": "Cargando..."
+  },
+  "HOME": {
+    "TITLE": "Verdad o Reto",
+    "ADD_PLAYERS": "Añade tus jugadores",
+    "MIN_PLAYERS": "Mínimo 2 jugadores para empezar",
+    "NEW_PLAYER": "Nuevo jugador",
+    "ENTER_PSEUDO": "Introduce tu apodo...",
+    "MAN": "Hombre",
+    "WOMAN": "Mujer",
+    "CHOOSE_AVATAR": "Elige tu avatar",
+    "ADD_PLAYER": "Añadir jugador",
+    "PLAYERS": "Jugadores",
+    "START_GAME": "Comenzar partida",
+    "ADD_MIN_2": "Añade al menos 2 jugadores para empezar"
+  }
+}

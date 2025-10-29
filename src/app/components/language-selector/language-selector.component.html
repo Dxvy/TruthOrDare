@@ -1,0 +1,34 @@
+<ion-button
+  fill="clear"
+  id="language-trigger"
+  (click)="togglePopover()"
+>
+  <span class="flag-icon">{{ languageService.currentLanguage.flag }}</span>
+  <ion-icon name="language" slot="icon-only"></ion-icon>
+</ion-button>
+
+<ion-popover
+  trigger="language-trigger"
+  [isOpen]="isOpen"
+  (didDismiss)="isOpen = false"
+>
+  <ng-template>
+    <ion-list>
+      <ion-item
+        *ngFor="let lang of languageService.availableLanguages"
+        button
+        (click)="selectLanguage(lang)"
+        [class.selected]="lang.code === languageService.currentLanguage.code"
+      >
+        <span class="flag-icon" slot="start">{{ lang.flag }}</span>
+        <ion-label>{{ lang.name }}</ion-label>
+        <ion-icon
+          *ngIf="lang.code === languageService.currentLanguage.code"
+          name="checkmark"
+          slot="end"
+          color="primary"
+        ></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ng-template>
+</ion-popover>

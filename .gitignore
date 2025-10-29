@@ -72,3 +72,4 @@ Thumbs.db
 # Fichiers d'environnement
 /src/environments/environment.prod.ts
 /src/environments/environment.local.ts
+.env

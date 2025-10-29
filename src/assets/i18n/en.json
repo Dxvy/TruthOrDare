@@ -1,0 +1,68 @@
+{
+  "COMMON": {
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm",
+    "SAVE": "Save",
+    "DELETE": "Delete",
+    "BACK": "Back",
+    "NEXT": "Next",
+    "LOADING": "Loading..."
+  },
+  "HOME": {
+    "TITLE": "Truth or Dare",
+    "ADD_PLAYERS": "Add your players",
+    "MIN_PLAYERS": "Minimum 2 players to start",
+    "NEW_PLAYER": "New player",
+    "ENTER_PSEUDO": "Enter your nickname...",
+    "MAN": "Man",
+    "WOMAN": "Woman",
+    "CHOOSE_AVATAR": "Choose your avatar",
+    "ADD_PLAYER": "Add player",
+    "PLAYERS": "Players",
+    "START_GAME": "Start game",
+    "ADD_MIN_2": "Add at least 2 players to start"
+  },
+  "MODE": {
+    "TITLE": "Choose your mode",
+    "SUBTITLE": "Each mode offers adapted challenges",
+    "SOFT": {
+      "NAME": "Soft",
+      "DESCRIPTION": "Have fun with friends without too much embarrassment",
+      "BADGE": "Beginner"
+    },
+    "HOT": {
+      "NAME": "Hot",
+      "DESCRIPTION": "It's getting hot, will you dare to reveal everything?",
+      "BADGE": "Intermediate"
+    },
+    "HARDCORE": {
+      "NAME": "Hardcore",
+      "DESCRIPTION": "No limits, no taboos. Reserved for the boldest!",
+      "BADGE": "Expert",
+      "LOCKED": "Premium",
+      "PRICE": "€0.50"
+    },
+    "INFO": "Modes determine the intensity and type of challenges you will receive. You can change mode at any time.",
+    "GALLERY_BUTTON": "View my memory gallery"
+  },
+  "GAME": {
+    "YOUR_TURN": "It's {{name}}'s turn",
+    "CHOOSE_CHALLENGE": "Choose your challenge!",
+    "ACTION": "Dare",
+    "ACTION_DESC": "Take on a challenge",
+    "TRUTH": "Truth",
+    "TRUTH_DESC": "Answer honestly",
+    "CONSECUTIVE_TRUTHS": "{{count}} truth(s) in a row",
+    "MUST_DO_ACTION": "You must now do a dare!",
+    "PHOTO_REQUIRED": "Photo required!",
+    "TAKE_PHOTO": "Take photo",
+    "PHOTO_SAVED": "Photo saved!",
+    "NEXT_PLAYER": "Next player",
+    "SKIP_CHALLENGE": "Skip this challenge",
+    "SECONDS": "seconds",
+    "QUIT_GAME": "Quit game?",
+    "QUIT_MESSAGE": "Are you sure you want to quit the current game?",
+    "CONTINUE": "Continue",
+    "QUIT": "Quit"
+  }
+}

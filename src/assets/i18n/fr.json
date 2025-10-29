@@ -1,0 +1,131 @@
+{
+"COMMON": {
+"CANCEL": "Annuler",
+"CONFIRM": "Confirmer",
+"SAVE": "Enregistrer",
+"DELETE": "Supprimer",
+"BACK": "Retour",
+"NEXT": "Suivant",
+"LOADING": "Chargement..."
+},
+"HOME": {
+"TITLE": "Action Vérité",
+"ADD_PLAYERS": "Ajoute tes joueurs",
+"MIN_PLAYERS": "Minimum 2 joueurs pour commencer",
+"NEW_PLAYER": "Nouveau joueur",
+"ENTER_PSEUDO": "Entre ton pseudo...",
+"MAN": "Homme",
+"WOMAN": "Femme",
+"CHOOSE_AVATAR": "Choisis ton avatar",
+"ADD_PLAYER": "Ajouter le joueur",
+"PLAYERS": "Joueurs",
+"START_GAME": "Commencer la partie",
+"ADD_MIN_2": "Ajoute au moins 2 joueurs pour commencer"
+},
+"MODE": {
+"TITLE": "Choisis ton mode",
+"SUBTITLE": "Chaque mode propose des défis adaptés",
+"SOFT": {
+"NAME": "Soft",
+"DESCRIPTION": "Pour s'amuser entre amis sans trop de gêne",
+"BADGE": "Débutant"
+},
+"HOT": {
+"NAME": "Hot",
+"DESCRIPTION": "Ça commence à chauffer, oseras-tu tout révéler ?",
+"BADGE": "Intermédiaire"
+},
+"HARDCORE": {
+"NAME": "Hardcore",
+"DESCRIPTION": "Sans limite, sans tabou. Réservé aux plus audacieux !",
+"BADGE": "Expert",
+"LOCKED": "Premium",
+"PRICE": "0,50€"
+},
+"INFO": "Les modes déterminent l'intensité et le type de défis que tu recevras. Tu peux changer de mode à tout moment.",
+"GALLERY_BUTTON": "Voir ma galerie de souvenirs"
+},
+"GAME": {
+"YOUR_TURN": "C'est à {{name}}",
+"CHOOSE_CHALLENGE": "Choisis ton défi !",
+"ACTION": "Action",
+"ACTION_DESC": "Relève un défi",
+"TRUTH": "Vérité",
+"TRUTH_DESC": "Réponds sincèrement",
+"CONSECUTIVE_TRUTHS": "{{count}} vérité(s) d'affilée",
+"MUST_DO_ACTION": "Tu dois maintenant faire une action !",
+"PHOTO_REQUIRED": "Photo obligatoire !",
+"TAKE_PHOTO": "Prendre la photo",
+"PHOTO_SAVED": "Photo enregistrée !",
+"NEXT_PLAYER": "Joueur suivant",
+"SKIP_CHALLENGE": "Passer ce défi",
+"SECONDS": "secondes",
+"QUIT_GAME": "Quitter la partie ?",
+"QUIT_MESSAGE": "Es-tu sûr de vouloir quitter la partie en cours ?",
+"CONTINUE": "Continuer",
+"QUIT": "Quitter"
+},
+"GALLERY": {
+"TITLE": "Ma Galerie",
+"YOUR_MEMORIES": "Tes souvenirs",
+"PHOTOS_COUNT": "{{count}} photo(s) immortalisée(s)",
+"NO_MEMORIES": "Aucun souvenir pour le moment",
+"NO_MEMORIES_DESC": "Les photos prises pendant tes parties apparaîtront ici. Lance une partie et immortalise vos meilleurs moments !",
+"START_GAME": "Commencer une partie",
+"DELETE_PHOTO": "Supprimer la photo ?",
+"DELETE_MESSAGE": "Cette action est irréversible. Es-tu sûr ?",
+"TODAY": "Aujourd'hui",
+"YESTERDAY": "Hier",
+"DAYS_AGO": "Il y a {{count}} jours"
+},
+"LOGIN": {
+"TITLE": "Connexion",
+"APP_NAME": "Action Vérité",
+"TAGLINE": "Connecte-toi pour sauvegarder tes parties",
+"LOGIN": "Connexion",
+"REGISTER": "Inscription",
+"EMAIL": "Email",
+"PASSWORD": "Mot de passe",
+"CONFIRM_PASSWORD": "Confirmer le mot de passe",
+"NAME": "Nom",
+"SIGN_IN": "Se connecter",
+"SIGN_UP": "S'inscrire",
+"OR": "ou",
+"GOOGLE": "Continuer avec Google",
+"NO_ACCOUNT": "Pas encore de compte ?",
+"ALREADY_ACCOUNT": "Déjà un compte ?",
+"FORGOT_PASSWORD": "Mot de passe oublié ?",
+"CONTINUE_GUEST": "Continuer sans compte",
+"YOU_CAN_ALSO": "Tu peux aussi"
+},
+"PAYMENT": {
+"TITLE": "Paiement",
+"UNLOCK_MODE": "Débloquer le mode Hardcore",
+"ONE_TIME": "Un paiement unique pour un accès illimité",
+"PREMIUM": "Premium",
+"ONE_TIME_ACCESS": "Paiement unique • Accès à vie",
+"FEATURES": {
+"HARDCORE": "Mode Hardcore débloqué",
+"UNLIMITED": "Défis sans limite",
+"NO_ADS": "Aucune publicité",
+"FREE_UPDATES": "Mises à jour gratuites"
+},
+"PAYMENT_INFO": "Informations de paiement",
+"EMAIL_CONFIRMATION": "Email de confirmation",
+"PAY": "Payer 0,50€",
+"SECURE_PAYMENT": "Paiement sécurisé par Stripe",
+"SUCCESS": "Paiement réussi ! 🎉",
+"SUCCESS_MESSAGE": "Le mode Hardcore est maintenant débloqué. Profite de défis sans limite !",
+"START_PLAYING": "Commencer à jouer",
+"TERMS": "conditions d'utilisation",
+"PRIVACY": "politique de confidentialité",
+"LEGAL": "En effectuant ce paiement, tu acceptes nos {{terms}} et notre {{privacy}}."
+},
+"SETTINGS": {
+"LANGUAGE": "Langue",
+"SELECT_LANGUAGE": "Sélectionner la langue",
+"FRENCH": "Français",
+"ENGLISH": "English",
+"SPANISH": "Español"
+}
+}

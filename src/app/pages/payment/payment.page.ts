@@ -62,7 +62,7 @@ export class PaymentPage implements OnInit, OnDestroy {
   mode = '';
 
   // Mode démo : si true, simule le paiement sans appeler Stripe
-  private readonly DEMO_MODE = true;
+  private readonly DEMO_MODE = false;
 
   private stripe: Stripe | null = null;
   private elements: StripeElements | null = null;
@@ -253,11 +253,10 @@ export class PaymentPage implements OnInit, OnDestroy {
   }
 
   /**
-   * Appelle votre backend pour créer un Payment Intent
-   * ⚠️ VOUS DEVEZ IMPLÉMENTER CETTE API
+   * Appelle du backend pour créer un Payment Intent
    */
   async createPaymentIntent(): Promise<{ clientSecret: string }> {
-    // TODO: Remplacer par votre vraie URL d'API
+    // Change according to your backend API
     const API_URL = 'http://localhost:3000/create-payment-intent';
 
     const response = await fetch(API_URL, {
