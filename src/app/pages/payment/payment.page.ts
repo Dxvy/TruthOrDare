@@ -61,6 +61,9 @@ export class PaymentPage implements OnInit, OnDestroy {
   cardError = '';
   mode = '';
 
+  // Mode démo : si true, simule le paiement sans appeler Stripe
+  private readonly DEMO_MODE = true;
+
   private stripe: Stripe | null = null;
   private elements: StripeElements | null = null;
   private cardElement: StripeCardElement | null = null;
@@ -156,39 +159,21 @@ export class PaymentPage implements OnInit, OnDestroy {
   }
 
   async processPayment() {
-    if (!this.email || !this.stripe || !this.cardElement) {
-      await this.showToast('Veuillez remplir tous les champs', 'warning');
+    if (!this.email) {
+      await this.showToast('Veuillez entrer votre email', 'warning');
       return;
     }
 
     this.processing = true;
 
     try {
-      // 1. Créer le Payment Intent côté serveur (vous devrez implémenter cette API)
-      const paymentIntent = await this.createPaymentIntent();
-
-      // 2. Confirmer le paiement avec Stripe
-      const { error, paymentIntent: confirmedPayment } = await this.stripe.confirmCardPayment(
-        paymentIntent.clientSecret,
-        {
-          payment_method: {
-            card: this.cardElement,
-            billing_details: {
-              email: this.email,
-            },
-          },
-        }
-      );
-
-      if (error) {
-        throw new Error(error.message);
+      if (this.DEMO_MODE) {
+        // MODE DÉMO : Simulation du paiement
+        await this.processDemoPayment();
+      } else {
+        // MODE PRODUCTION : Vrai paiement Stripe
+        await this.processRealPayment();
       }
-
-      if (confirmedPayment?.status === 'succeeded') {
-        // Paiement réussi !
-        await this.handlePaymentSuccess();
-      }
-
     } catch (error: any) {
       console.error('Erreur de paiement:', error);
       await this.showToast(error.message || 'Erreur lors du paiement', 'danger');
@@ -197,36 +182,109 @@ export class PaymentPage implements OnInit, OnDestroy {
     }
   }
 
-  async createPaymentIntent(): Promise<{ clientSecret: string }> {
-    // ⚠️ VOUS DEVEZ IMPLÉMENTER CETTE FONCTION AVEC VOTRE BACKEND
-    // Ceci est un exemple simulé
+  /**
+   * MODE DÉMO : Simule un paiement sans appeler Stripe
+   */
+  async processDemoPayment() {
+    // Vérifier que la carte est remplie (visuellement)
+    if (!this.stripe || !this.cardElement) {
+      await this.showToast('Veuillez remplir les informations de carte', 'warning');
+      return;
+    }
 
-    // En production, vous devriez appeler votre API:
-    // const response = await fetch('https://your-api.com/create-payment-intent', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     amount: 50, // 0.50€ = 50 centimes
-    //     currency: 'eur',
-    //     email: this.email
-    //   })
-    // });
-    // return await response.json();
-
-    // Pour la démo, on simule:
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          clientSecret: 'pi_test_secret_DEMO' // Remplacez par un vrai client secret
-        });
-      }, 1000);
+    // Créer un Payment Method pour valider la carte (sans paiement réel)
+    const { error: cardError, paymentMethod } = await this.stripe.createPaymentMethod({
+      type: 'card',
+      card: this.cardElement,
+      billing_details: {
+        email: this.email,
+      },
     });
+
+    if (cardError) {
+      throw new Error(cardError.message);
+    }
+
+    // Simuler un délai de traitement
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Vérifier le numéro de carte pour simuler succès/échec
+    // Carte de test Stripe : 4242 4242 4242 4242 = succès
+    // Carte de test Stripe : 4000 0000 0000 0002 = échec
+    console.log('Payment Method créé (mode démo):', paymentMethod?.id);
+
+    // En mode démo, on considère toujours que ça réussit
+    await this.handlePaymentSuccess();
+  }
+
+  /**
+   * MODE PRODUCTION : Vrai paiement avec votre backend
+   */
+  async processRealPayment() {
+    if (!this.stripe || !this.cardElement) {
+      await this.showToast('Veuillez remplir tous les champs', 'warning');
+      return;
+    }
+
+    // 1. Créer le Payment Intent côté serveur
+    const paymentIntent = await this.createPaymentIntent();
+
+    // 2. Confirmer le paiement avec Stripe
+    const { error, paymentIntent: confirmedPayment } = await this.stripe.confirmCardPayment(
+      paymentIntent.clientSecret,
+      {
+        payment_method: {
+          card: this.cardElement,
+          billing_details: {
+            email: this.email,
+          },
+        },
+      }
+    );
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    if (confirmedPayment?.status === 'succeeded') {
+      // Paiement réussi !
+      await this.handlePaymentSuccess();
+    }
+  }
+
+  /**
+   * Appelle votre backend pour créer un Payment Intent
+   * ⚠️ VOUS DEVEZ IMPLÉMENTER CETTE API
+   */
+  async createPaymentIntent(): Promise<{ clientSecret: string }> {
+    // TODO: Remplacer par votre vraie URL d'API
+    const API_URL = 'http://localhost:3000/create-payment-intent';
+
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: 50, // 0.50€ = 50 centimes
+        currency: 'eur',
+        email: this.email,
+        mode: this.mode
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error('Erreur lors de la création du paiement');
+    }
+
+    return await response.json();
   }
 
   async handlePaymentSuccess() {
     // Sauvegarder le statut premium localement
     localStorage.setItem('isPremium', 'true');
     localStorage.setItem('premiumMode', this.mode);
+    localStorage.setItem('premiumDate', new Date().toISOString());
 
     this.paymentSuccess = true;
 
