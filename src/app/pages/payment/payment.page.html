@@ -1,0 +1,135 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="gradient-text">Paiement</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleTheme()">
+        <ion-icon [name]="isDarkMode ? 'sunny' : 'moon'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="payment-container">
+    <!-- En-tête -->
+    <div class="header-section">
+      <div class="unlock-icon">🔓</div>
+      <h1 class="main-title">
+        Débloquer le mode <span class="gradient-text">Hardcore</span>
+      </h1>
+      <p class="subtitle">Un paiement unique pour un accès illimité</p>
+    </div>
+
+    <!-- Carte de prix -->
+    <div class="price-card">
+      <div class="price-badge">
+        <ion-icon name="star"></ion-icon>
+        Premium
+      </div>
+
+      <div class="price-amount">
+        <span class="currency">€</span>
+        <span class="amount">0.50</span>
+      </div>
+
+      <p class="price-description">
+        Paiement unique • Accès à vie
+      </p>
+
+      <div class="features-list">
+        <div class="feature-item">
+          <ion-icon name="checkmark-circle" color="success"></ion-icon>
+          <span>Mode Hardcore débloqué</span>
+        </div>
+        <div class="feature-item">
+          <ion-icon name="checkmark-circle" color="success"></ion-icon>
+          <span>Défis sans limite</span>
+        </div>
+        <div class="feature-item">
+          <ion-icon name="checkmark-circle" color="success"></ion-icon>
+          <span>Aucune publicité</span>
+        </div>
+        <div class="feature-item">
+          <ion-icon name="checkmark-circle" color="success"></ion-icon>
+          <span>Mises à jour gratuites</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulaire de paiement -->
+    <div class="payment-form" *ngIf="!paymentSuccess">
+      <h2 class="form-title">Informations de paiement</h2>
+
+      <!-- Élément Stripe Card -->
+      <div id="card-element" class="card-element"></div>
+      <div id="card-errors" class="card-errors" *ngIf="cardError">
+        {{ cardError }}
+      </div>
+
+      <!-- Email -->
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-input
+          type="email"
+          [(ngModel)]="email"
+          placeholder="Email de confirmation"
+          class="custom-input"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Bouton de paiement -->
+      <ion-button
+        expand="block"
+        class="pay-button"
+        (click)="processPayment()"
+        [disabled]="processing || !email"
+      >
+        <ion-spinner *ngIf="processing" name="crescent"></ion-spinner>
+        <span *ngIf="!processing">
+          <ion-icon name="lock-closed" slot="start"></ion-icon>
+          Payer 0,50€
+        </span>
+      </ion-button>
+
+      <p class="secure-payment">
+        <ion-icon name="shield-checkmark"></ion-icon>
+        Paiement sécurisé par Stripe
+      </p>
+    </div>
+
+    <!-- Message de succès -->
+    <div class="success-section" *ngIf="paymentSuccess">
+      <div class="success-animation">
+        <ion-icon name="checkmark-circle" color="success"></ion-icon>
+      </div>
+      <h2 class="success-title">Paiement réussi ! 🎉</h2>
+      <p class="success-message">
+        Le mode Hardcore est maintenant débloqué.<br>
+        Profite de défis sans limite !
+      </p>
+      <ion-button
+        expand="block"
+        class="continue-button"
+        (click)="continueToGame()"
+      >
+        <ion-icon name="rocket" slot="start"></ion-icon>
+        Commencer à jouer
+      </ion-button>
+    </div>
+
+    <!-- Note légale -->
+    <div class="legal-note">
+      <p>
+        En effectuant ce paiement, tu acceptes nos
+        <a (click)="openTerms()">conditions d'utilisation</a> et notre
+        <a (click)="openPrivacy()">politique de confidentialité</a>.
+      </p>
+    </div>
+  </div>
+</ion-content>

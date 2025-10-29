@@ -1,13 +1,132 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title class="gradient-text">Action Vérité</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleTheme()">
+        <ion-icon [name]="isDarkMode ? 'sunny' : 'moon'" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button (click)="goToLogin()">
+        <ion-icon name="person-circle" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="home-container">
+    <!-- En-tête -->
+    <div class="header-section">
+      <h1 class="main-title">
+        <span class="gradient-text">Ajoute</span> tes joueurs
+      </h1>
+      <p class="subtitle">Minimum 2 joueurs pour commencer</p>
+    </div>
+
+    <!-- Formulaire d'ajout de joueur -->
+    <div class="card add-player-card">
+      <h2 class="section-title">Nouveau joueur</h2>
+
+      <ion-item lines="none" class="input-item">
+        <ion-input
+          [(ngModel)]="newPlayer.pseudo"
+          placeholder="Entre ton pseudo..."
+          class="custom-input"
+        ></ion-input>
+      </ion-item>
+
+      <div class="gender-selector">
+        <div
+          class="gender-option"
+          [class.active]="newPlayer.gender === 'homme'"
+          (click)="selectGender('homme')"
+        >
+          <ion-icon name="male"></ion-icon>
+          <span>Homme</span>
+        </div>
+        <div
+          class="gender-option"
+          [class.active]="newPlayer.gender === 'femme'"
+          (click)="selectGender('femme')"
+        >
+          <ion-icon name="female"></ion-icon>
+          <span>Femme</span>
+        </div>
+      </div>
+
+      <div class="avatar-selector">
+        <h3 class="avatar-title">Choisis ton avatar</h3>
+        <div class="avatar-grid">
+          <div
+            *ngFor="let avatar of avatars"
+            class="avatar-option"
+            [class.selected]="newPlayer.avatar === avatar"
+            (click)="selectAvatar(avatar)"
+          >
+            {{ avatar }}
+          </div>
+        </div>
+      </div>
+
+      <ion-button
+        expand="block"
+        class="add-button"
+        (click)="addPlayer()"
+        [disabled]="!canAddPlayer()"
+      >
+        <ion-icon name="add-circle" slot="start"></ion-icon>
+        Ajouter le joueur
+      </ion-button>
+    </div>
+
+    <!-- Liste des joueurs -->
+    <div class="players-section" *ngIf="players.length > 0">
+      <h2 class="section-title">
+        Joueurs ({{ players.length }})
+      </h2>
+
+      <div class="players-list">
+        <div
+          *ngFor="let player of players; let i = index"
+          class="player-card"
+        >
+          <div class="player-info">
+            <div class="player-avatar">{{ player.avatar }}</div>
+            <div class="player-details">
+              <h3 class="player-name">{{ player.pseudo }}</h3>
+              <span class="player-gender">
+                <ion-icon [name]="player.gender === 'homme' ? 'male' : 'female'"></ion-icon>
+                {{ player.gender === 'homme' ? 'Homme' : 'Femme' }}
+              </span>
+            </div>
+          </div>
+          <ion-button
+            fill="clear"
+            color="danger"
+            (click)="removePlayer(i)"
+          >
+            <ion-icon name="trash" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bouton démarrer -->
+    <div class="start-section" *ngIf="players.length >= 2">
+      <ion-button
+        expand="block"
+        class="start-button"
+        (click)="startGame()"
+      >
+        <ion-icon name="rocket" slot="start"></ion-icon>
+        Commencer la partie
+        <ion-icon name="arrow-forward" slot="end"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Message si pas assez de joueurs -->
+    <div class="empty-state" *ngIf="players.length < 2">
+      <ion-icon name="people" class="empty-icon"></ion-icon>
+      <p>Ajoute au moins 2 joueurs pour commencer</p>
+    </div>
+  </div>
 </ion-content>

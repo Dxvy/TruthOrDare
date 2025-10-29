@@ -1,13 +1,110 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>mode</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="gradient-text">Choisis ton mode</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleTheme()">
+        <ion-icon [name]="isDarkMode ? 'sunny' : 'moon'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">mode</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="mode-container">
+    <!-- En-tête -->
+    <div class="header-section">
+      <h1 class="main-title">
+        Quel <span class="gradient-text">niveau</span> choisis-tu ?
+      </h1>
+      <p class="subtitle">Chaque mode propose des défis adaptés</p>
+    </div>
+
+    <!-- Cartes de mode -->
+    <div class="modes-grid">
+      <!-- Mode Soft -->
+      <div
+        class="mode-card soft-mode"
+        (click)="selectMode('soft')"
+      >
+        <div class="mode-icon">😊</div>
+        <h2 class="mode-name">Soft</h2>
+        <p class="mode-description">
+          Pour s'amuser entre amis sans trop de gêne
+        </p>
+        <div class="mode-badge soft-badge">
+          <ion-icon name="leaf"></ion-icon>
+          Débutant
+        </div>
+      </div>
+
+      <!-- Mode Hot -->
+      <div
+        class="mode-card hot-mode"
+        (click)="selectMode('hot')"
+      >
+        <div class="mode-icon">🔥</div>
+        <h2 class="mode-name">Hot</h2>
+        <p class="mode-description">
+          Ça commence à chauffer, oseras-tu tout révéler ?
+        </p>
+        <div class="mode-badge hot-badge">
+          <ion-icon name="flame"></ion-icon>
+          Intermédiaire
+        </div>
+      </div>
+
+      <!-- Mode Hardcore -->
+      <div
+        class="mode-card hardcore-mode"
+        [class.locked]="!isPremiumUnlocked"
+        (click)="selectMode('hardcore')"
+      >
+        <div class="mode-icon">💀</div>
+        <h2 class="mode-name">
+          Hardcore
+          <ion-icon *ngIf="!isPremiumUnlocked" name="lock-closed" class="lock-icon"></ion-icon>
+        </h2>
+        <p class="mode-description">
+          Sans limite, sans tabou. Réservé aux plus audacieux !
+        </p>
+        <div class="mode-badge hardcore-badge">
+          <ion-icon name="skull"></ion-icon>
+          Expert
+        </div>
+
+        <div class="premium-overlay" *ngIf="!isPremiumUnlocked">
+          <div class="premium-badge">
+            <ion-icon name="star"></ion-icon>
+            Premium
+          </div>
+          <p class="premium-price">0,50€</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Informations supplémentaires -->
+    <div class="info-card">
+      <ion-icon name="information-circle"></ion-icon>
+      <p>
+        Les modes déterminent l'intensité et le type de défis que tu recevras.
+        Tu peux changer de mode à tout moment.
+      </p>
+    </div>
+
+    <!-- Bouton de galerie -->
+    <ion-button
+      expand="block"
+      fill="outline"
+      class="gallery-button"
+      (click)="goToGallery()"
+    >
+      <ion-icon name="images" slot="start"></ion-icon>
+      Voir ma galerie de souvenirs
+    </ion-button>
+  </div>
 </ion-content>

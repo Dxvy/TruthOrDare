@@ -1,13 +1,144 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>partie</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="quitGame()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="gradient-text">{{ selectedMode }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleTheme()">
+        <ion-icon [name]="isDarkMode ? 'sunny' : 'moon'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">partie</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="game-container">
+    <!-- Phase 1: Affichage du joueur actuel -->
+    <div class="current-player-section" *ngIf="!cardDrawn">
+      <div class="player-avatar-large">{{ currentPlayer?.avatar }}</div>
+      <h1 class="player-turn">
+        C'est à <span class="gradient-text">{{ currentPlayer?.pseudo }}</span>
+      </h1>
+
+      <p class="instruction">Choisis ton défi !</p>
+
+      <!-- Compteur de vérités -->
+      <div class="truth-counter" *ngIf="consecutiveTruths > 0">
+        <ion-icon name="alert-circle"></ion-icon>
+        <p>{{ consecutiveTruths }} vérité(s) d'affilée</p>
+        <p *ngIf="consecutiveTruths >= 3" class="warning-text">
+          Tu dois maintenant faire une action !
+        </p>
+      </div>
+
+      <!-- Boutons Action / Vérité -->
+      <div class="choice-buttons">
+        <button
+          class="choice-btn action-btn"
+          (click)="drawCard('action')"
+        >
+          <div class="btn-icon">💪</div>
+          <h3>Action</h3>
+          <p>Relève un défi</p>
+        </button>
+
+        <button
+          class="choice-btn truth-btn"
+          (click)="drawCard('verite')"
+          [disabled]="consecutiveTruths >= 3"
+        >
+          <div class="btn-icon">🤔</div>
+          <h3>Vérité</h3>
+          <p>Réponds sincèrement</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Phase 2: Affichage de la carte -->
+    <div class="card-display-section" *ngIf="cardDrawn && currentCard">
+      <!-- Type de carte -->
+      <div class="card-type-badge" [class.action-badge]="currentCard.type === 'action'" [class.truth-badge]="currentCard.type === 'verite'">
+        <ion-icon [name]="currentCard.type === 'action' ? 'flash' : 'chatbubble-ellipses'"></ion-icon>
+        {{ currentCard.type === 'action' ? 'Action' : 'Vérité' }}
+      </div>
+
+      <!-- Carte principale -->
+      <div class="challenge-card">
+        <div class="card-emoji">
+          {{ currentCard.type === 'action' ? '💪' : '🤔' }}
+        </div>
+        <p class="card-description">
+          {{ currentCard.description }}
+        </p>
+      </div>
+
+      <!-- Timer si présent -->
+      <div class="timer-section" *ngIf="currentCard.timer && timerActive">
+        <div class="timer-circle">
+          <div class="timer-value">{{ timeRemaining }}</div>
+          <p class="timer-label">secondes</p>
+        </div>
+        <ion-progress-bar
+          [value]="timerProgress"
+          class="timer-progress"
+        ></ion-progress-bar>
+      </div>
+
+      <!-- Photo obligatoire -->
+      <div class="photo-section" *ngIf="currentCard.photoObligatoire">
+        <div class="photo-required-badge">
+          <ion-icon name="camera"></ion-icon>
+          Photo obligatoire !
+        </div>
+
+        <ion-button
+          expand="block"
+          class="photo-button"
+          (click)="takePhoto()"
+          *ngIf="!photoTaken"
+        >
+          <ion-icon name="camera" slot="start"></ion-icon>
+          Prendre la photo
+        </ion-button>
+
+        <div class="photo-taken" *ngIf="photoTaken">
+          <ion-icon name="checkmark-circle" color="success"></ion-icon>
+          <p>Photo enregistrée !</p>
+        </div>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="action-buttons">
+        <ion-button
+          expand="block"
+          class="next-button"
+          (click)="nextTurn()"
+          [disabled]="currentCard.photoObligatoire && !photoTaken"
+        >
+          <ion-icon name="arrow-forward-circle" slot="start"></ion-icon>
+          Joueur suivant
+        </ion-button>
+
+        <ion-button
+          expand="block"
+          fill="outline"
+          class="skip-button"
+          (click)="skipChallenge()"
+        >
+          Passer ce défi
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Bouton galerie (toujours visible en bas) -->
+    <ion-button
+      class="gallery-fab"
+      (click)="goToGallery()"
+    >
+      <ion-icon name="images"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>

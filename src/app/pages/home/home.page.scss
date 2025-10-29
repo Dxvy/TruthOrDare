@@ -1,0 +1,286 @@
+.home-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeIn 0.6s ease;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 20px 0 10px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--ion-color-step-600);
+  margin: 0;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+  color: var(--ion-text-color);
+}
+
+/* Carte d'ajout de joueur */
+.add-player-card {
+  margin-bottom: 30px;
+}
+
+.input-item {
+  --background: rgba(94, 96, 255, 0.1);
+  --border-radius: 15px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+}
+
+.custom-input {
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* Sélecteur de genre */
+.gender-selector {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.gender-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  background: rgba(94, 96, 255, 0.1);
+  border: 2px solid transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  ion-icon {
+    font-size: 2rem;
+    color: var(--ion-color-step-600);
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    background: rgba(94, 96, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &.active {
+    background: var(--gradient-primary);
+    border-color: var(--ion-color-primary);
+    box-shadow: 0 4px 15px rgba(94, 96, 255, 0.4);
+
+    ion-icon {
+      color: white;
+    }
+
+    span {
+      color: white;
+    }
+  }
+}
+
+/* Sélecteur d'avatar */
+.avatar-selector {
+  margin-bottom: 25px;
+}
+
+.avatar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--ion-color-step-700);
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.avatar-option {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: rgba(94, 96, 255, 0.1);
+  border: 2px solid transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(94, 96, 255, 0.15);
+    transform: scale(1.05);
+  }
+
+  &.selected {
+    background: var(--gradient-primary);
+    border-color: var(--ion-color-primary);
+    box-shadow: 0 4px 15px rgba(94, 96, 255, 0.4);
+    transform: scale(1.1);
+  }
+}
+
+/* Bouton ajouter */
+.add-button {
+  --background: var(--gradient-primary);
+  --border-radius: 15px;
+  height: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(94, 96, 255, 0.4);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(94, 96, 255, 0.6);
+  }
+}
+
+/* Section des joueurs */
+.players-section {
+  margin-bottom: 30px;
+  animation: fadeIn 0.6s ease;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background: var(--card-background);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+  animation: slideIn 0.5s ease;
+
+  &:hover {
+    background: var(--card-background-hover);
+    transform: translateX(5px);
+  }
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.player-avatar {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.player-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.player-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--ion-text-color);
+}
+
+.player-gender {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: var(--ion-color-step-600);
+
+  ion-icon {
+    font-size: 1rem;
+  }
+}
+
+/* Bouton démarrer */
+.start-section {
+  margin: 30px 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.start-button {
+  --background: var(--gradient-secondary);
+  --border-radius: 20px;
+  height: 60px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 25px rgba(6, 182, 212, 0.5);
+  animation: glow 2s ease-in-out infinite;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(6, 182, 212, 0.7);
+  }
+}
+
+/* État vide */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--ion-color-step-600);
+  animation: fadeIn 0.8s ease;
+
+  .empty-icon {
+    font-size: 5rem;
+    color: var(--ion-color-step-500);
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .avatar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+}

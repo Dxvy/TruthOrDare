@@ -1,37 +1,291 @@
 /*
  * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
+ * Theme: Galactic Blue
  */
 
-/* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
-
-/* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+/* Variables de thème */
+:root {
+  /* Thème Sombre (par défaut) */
+  --ion-background-color: #0a0e27;
+  --ion-background-color-rgb: 10, 14, 39;
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+  --ion-text-color: #e8eaf6;
+  --ion-text-color-rgb: 232, 234, 246;
+
+  --ion-color-step-50: #131829;
+  --ion-color-step-100: #1a1f3a;
+  --ion-color-step-150: #21264b;
+  --ion-color-step-200: #282d5c;
+  --ion-color-step-250: #2f356d;
+  --ion-color-step-300: #363c7e;
+  --ion-color-step-350: #3d438f;
+  --ion-color-step-400: #444aa0;
+  --ion-color-step-450: #4b51b1;
+  --ion-color-step-500: #5258c2;
+  --ion-color-step-550: #595fd3;
+  --ion-color-step-600: #6066e4;
+  --ion-color-step-650: #676df5;
+  --ion-color-step-700: #7e83f6;
+  --ion-color-step-750: #9599f7;
+  --ion-color-step-800: #acaff8;
+  --ion-color-step-850: #c3c5f9;
+  --ion-color-step-900: #dadbfa;
+  --ion-color-step-950: #f1f1fb;
+
+  /* Couleur primaire - Bleu galactique */
+  --ion-color-primary: #5e60ff;
+  --ion-color-primary-rgb: 94, 96, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5354e0;
+  --ion-color-primary-tint: #6e70ff;
+
+  /* Couleur secondaire - Violet cosmique */
+  --ion-color-secondary: #a855f7;
+  --ion-color-secondary-rgb: 168, 85, 247;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #944bd9;
+  --ion-color-secondary-tint: #b166f8;
+
+  /* Couleur tertiaire - Cyan nébuleuse */
+  --ion-color-tertiary: #06b6d4;
+  --ion-color-tertiary-rgb: 6, 182, 212;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #05a0bb;
+  --ion-color-tertiary-tint: #1fbdd8;
+
+  /* Success */
+  --ion-color-success: #10b981;
+  --ion-color-success-rgb: 16, 185, 129;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #0ea372;
+  --ion-color-success-tint: #28c18e;
+
+  /* Warning */
+  --ion-color-warning: #f59e0b;
+  --ion-color-warning-rgb: 245, 158, 11;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #d88b0a;
+  --ion-color-warning-tint: #f6a823;
+
+  /* Danger */
+  --ion-color-danger: #ef4444;
+  --ion-color-danger-rgb: 239, 68, 68;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #d23c3c;
+  --ion-color-danger-tint: #f15757;
+
+  /* Card background */
+  --card-background: rgba(30, 35, 70, 0.6);
+  --card-background-hover: rgba(40, 45, 90, 0.8);
+  --card-border: rgba(94, 96, 255, 0.2);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #5e60ff 0%, #a855f7 100%);
+  --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #5e60ff 100%);
+  --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
+}
+
+/* Thème Clair */
+body.light-theme {
+  --ion-background-color: #f0f4ff;
+  --ion-background-color-rgb: 240, 244, 255;
+
+  --ion-text-color: #1e1b4b;
+  --ion-text-color-rgb: 30, 27, 75;
+
+  --ion-color-step-50: #e7ebfc;
+  --ion-color-step-100: #dfe3f9;
+  --ion-color-step-150: #d7dbf6;
+  --ion-color-step-200: #cfd3f3;
+  --ion-color-step-250: #c7cbf0;
+  --ion-color-step-300: #bfc3ed;
+  --ion-color-step-350: #b7bbea;
+  --ion-color-step-400: #afb3e7;
+  --ion-color-step-450: #a7abe4;
+  --ion-color-step-500: #9fa3e1;
+  --ion-color-step-550: #979bde;
+  --ion-color-step-600: #8f93db;
+  --ion-color-step-650: #878bd8;
+  --ion-color-step-700: #7f83d5;
+  --ion-color-step-750: #777bd2;
+  --ion-color-step-800: #6f73cf;
+  --ion-color-step-850: #676bcc;
+  --ion-color-step-900: #5f63c9;
+  --ion-color-step-950: #575bc6;
+
+  /* Ajuster les couleurs pour le mode clair */
+  --ion-color-primary: #5e60ff;
+  --ion-color-primary-rgb: 94, 96, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5354e0;
+  --ion-color-primary-tint: #6e70ff;
+
+  --card-background: rgba(255, 255, 255, 0.9);
+  --card-background-hover: rgba(255, 255, 255, 1);
+  --card-border: rgba(94, 96, 255, 0.3);
+
+  --ion-toolbar-background: rgba(255, 255, 255, 0.95);
+  --ion-toolbar-color: #1e1b4b;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(94, 96, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(94, 96, 255, 0.8);
+  }
+}
+
+/* Classes utilitaires */
+.card {
+  background: var(--card-background);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  padding: 20px;
+  margin: 10px 0;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease;
+}
+
+.card:hover {
+  background: var(--card-background-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(94, 96, 255, 0.3);
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+.btn-gradient {
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: 25px;
+  padding: 15px 30px;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(94, 96, 255, 0.4);
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(94, 96, 255, 0.6);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ion-color-step-100);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ion-color-primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ion-color-primary-shade);
+}
+
+/* Effet de fond étoilé */
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 60px 70px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 50px 50px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 90px 10px, rgba(255, 255, 255, 0.2), transparent);
+  background-size: 200px 200px;
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 150px 50px;
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+body.light-theme::before {
+  opacity: 0.2;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(94, 96, 255, 0.2), transparent),
+    radial-gradient(2px 2px at 60px 70px, rgba(168, 85, 247, 0.15), transparent),
+    radial-gradient(1px 1px at 50px 50px, rgba(6, 182, 212, 0.15), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(94, 96, 255, 0.2), transparent),
+    radial-gradient(2px 2px at 90px 10px, rgba(168, 85, 247, 0.15), transparent);
+}

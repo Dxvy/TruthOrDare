@@ -1,13 +1,69 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>gallery</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="gradient-text">Ma Galerie</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleTheme()">
+        <ion-icon [name]="isDarkMode ? 'sunny' : 'moon'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">gallery</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="gallery-container">
+    <!-- En-tête -->
+    <div class="header-section">
+      <h1 class="main-title">
+        Tes <span class="gradient-text">souvenirs</span>
+      </h1>
+      <p class="subtitle">{{ photos.length }} photo(s) immortalisée(s)</p>
+    </div>
+
+    <!-- Grille de photos -->
+    <div class="photos-grid" *ngIf="photos.length > 0">
+      <div
+        *ngFor="let photo of photos; let i = index"
+        class="photo-item"
+        (click)="openPhotoDetail(photo)"
+      >
+        <img [src]="photo.image" [alt]="'Photo ' + (i + 1)" />
+        <div class="photo-overlay">
+          <div class="photo-info">
+            <p class="photo-date">{{ formatDate(photo.date) }}</p>
+            <p class="photo-players">{{ photo.players.join(', ') }}</p>
+          </div>
+          <ion-button
+            fill="clear"
+            size="small"
+            (click)="deletePhoto(photo.id, $event)"
+            class="delete-btn"
+          >
+            <ion-icon name="trash" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- État vide -->
+    <div class="empty-state" *ngIf="photos.length === 0">
+      <div class="empty-icon">📸</div>
+      <h2>Aucun souvenir pour le moment</h2>
+      <p>
+        Les photos prises pendant tes parties apparaîtront ici.
+        Lance une partie et immortalise vos meilleurs moments !
+      </p>
+      <ion-button
+        class="start-game-btn"
+        (click)="startNewGame()"
+      >
+        <ion-icon name="rocket" slot="start"></ion-icon>
+        Commencer une partie
+      </ion-button>
+    </div>
+  </div>
 </ion-content>

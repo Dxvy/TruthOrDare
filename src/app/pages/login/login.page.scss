@@ -1,0 +1,291 @@
+.login-container {
+  padding: 20px;
+  max-width: 450px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Logo de l'application */
+.app-logo {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeIn 0.6s ease;
+}
+
+.logo-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  box-shadow: 0 10px 40px rgba(94, 96, 255, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.app-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: var(--ion-color-step-600);
+  margin: 0;
+}
+
+/* Formulaire */
+.login-form {
+  background: var(--card-background);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  border: 2px solid var(--card-border);
+  padding: 30px;
+  margin-bottom: 30px;
+  animation: fadeIn 0.6s ease 0.2s both;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 30px;
+  text-align: center;
+  color: var(--ion-text-color);
+}
+
+/* Groupe d'inputs */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.input-item {
+  --background: rgba(94, 96, 255, 0.1);
+  --border-radius: 15px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+  --min-height: 55px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    --background: rgba(94, 96, 255, 0.15);
+    box-shadow: 0 0 0 2px var(--ion-color-primary);
+  }
+
+  ion-icon {
+    color: var(--ion-color-primary);
+    font-size: 1.3rem;
+    margin-right: 10px;
+  }
+}
+
+.custom-input {
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  font-size: 1rem;
+}
+
+/* Boutons */
+.submit-button {
+  --background: var(--gradient-primary);
+  --border-radius: 15px;
+  height: 55px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 25px rgba(94, 96, 255, 0.5);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(94, 96, 255, 0.7);
+  }
+
+  &:disabled {
+    --background: var(--ion-color-step-300);
+    box-shadow: none;
+    opacity: 0.5;
+  }
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 25px 0;
+  color: var(--ion-color-step-500);
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--ion-color-step-300);
+  }
+
+  span {
+    padding: 0 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+}
+
+/* Bouton Google */
+.google-button {
+  --border-radius: 15px;
+  --border-width: 2px;
+  --border-color: var(--ion-color-step-300);
+  height: 55px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+
+  ion-icon {
+    font-size: 1.3rem;
+  }
+
+  &:hover {
+    --background: rgba(94, 96, 255, 0.1);
+    --border-color: var(--ion-color-primary);
+    transform: translateY(-2px);
+  }
+}
+
+/* Switch mode (connexion/inscription) */
+.switch-mode {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--ion-color-step-600);
+  margin: 0 0 15px;
+
+  a {
+    color: var(--ion-color-primary);
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--ion-color-primary-tint);
+    }
+  }
+}
+
+/* Mot de passe oublié */
+.forgot-password {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ion-color-step-500);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: var(--ion-color-primary);
+    text-decoration: underline;
+  }
+}
+
+/* Option invité */
+.guest-option {
+  text-align: center;
+  padding: 20px;
+  background: rgba(6, 182, 212, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  animation: fadeIn 0.6s ease 0.4s both;
+
+  p {
+    font-size: 0.9rem;
+    color: var(--ion-color-step-600);
+    margin: 0 0 15px;
+  }
+}
+
+.guest-button {
+  --border-radius: 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ion-color-tertiary);
+  transition: all 0.3s ease;
+
+  &:hover {
+    --color: var(--ion-color-tertiary-tint);
+    transform: translateX(5px);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  .login-form {
+    padding: 20px;
+  }
+
+  .app-name {
+    font-size: 2rem;
+  }
+
+  .logo-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+
+  .submit-button,
+  .google-button {
+    height: 50px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mode clair ajustements */
+body.light-theme {
+  .input-item {
+    --background: rgba(94, 96, 255, 0.08);
+
+    &:focus-within {
+      --background: rgba(94, 96, 255, 0.12);
+    }
+  }
+}

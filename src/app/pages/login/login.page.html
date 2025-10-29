@@ -1,0 +1,198 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="gradient-text">Connexion</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleTheme()">
+        <ion-icon [name]="isDarkMode ? 'sunny' : 'moon'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="login-container">
+    <!-- Logo / Icône de l'app -->
+    <div class="app-logo">
+      <div class="logo-circle">
+        🎲
+      </div>
+      <h1 class="app-name">
+        <span class="gradient-text">Action Vérité</span>
+      </h1>
+      <p class="tagline">Connecte-toi pour sauvegarder tes parties</p>
+    </div>
+
+    <!-- Formulaire de connexion -->
+    <div class="login-form" *ngIf="!showRegister">
+      <h2 class="form-title">Connexion</h2>
+
+      <div class="input-group">
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="mail" slot="start"></ion-icon>
+          <ion-input
+            type="email"
+            [(ngModel)]="loginEmail"
+            placeholder="Email"
+            class="custom-input"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="lock-closed" slot="start"></ion-icon>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="loginPassword"
+            placeholder="Mot de passe"
+            class="custom-input"
+          ></ion-input>
+          <ion-button
+            fill="clear"
+            slot="end"
+            (click)="showPassword = !showPassword"
+          >
+            <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </div>
+
+      <ion-button
+        expand="block"
+        class="submit-button"
+        (click)="login()"
+        [disabled]="!canLogin()"
+      >
+        <ion-icon name="log-in" slot="start"></ion-icon>
+        Se connecter
+      </ion-button>
+
+      <div class="divider">
+        <span>ou</span>
+      </div>
+
+      <!-- Connexion avec Google -->
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="google-button"
+        (click)="loginWithGoogle()"
+      >
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Continuer avec Google
+      </ion-button>
+
+      <!-- Lien vers inscription -->
+      <p class="switch-mode">
+        Pas encore de compte ?
+        <a (click)="showRegister = true">S'inscrire</a>
+      </p>
+
+      <a class="forgot-password" (click)="resetPassword()">
+        Mot de passe oublié ?
+      </a>
+    </div>
+
+    <!-- Formulaire d'inscription -->
+    <div class="login-form" *ngIf="showRegister">
+      <h2 class="form-title">Inscription</h2>
+
+      <div class="input-group">
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="person" slot="start"></ion-icon>
+          <ion-input
+            type="text"
+            [(ngModel)]="registerName"
+            placeholder="Nom"
+            class="custom-input"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="mail" slot="start"></ion-icon>
+          <ion-input
+            type="email"
+            [(ngModel)]="registerEmail"
+            placeholder="Email"
+            class="custom-input"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="lock-closed" slot="start"></ion-icon>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="registerPassword"
+            placeholder="Mot de passe"
+            class="custom-input"
+          ></ion-input>
+          <ion-button
+            fill="clear"
+            slot="end"
+            (click)="showPassword = !showPassword"
+          >
+            <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="lock-closed" slot="start"></ion-icon>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="registerPasswordConfirm"
+            placeholder="Confirmer le mot de passe"
+            class="custom-input"
+          ></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-button
+        expand="block"
+        class="submit-button"
+        (click)="register()"
+        [disabled]="!canRegister()"
+      >
+        <ion-icon name="person-add" slot="start"></ion-icon>
+        S'inscrire
+      </ion-button>
+
+      <div class="divider">
+        <span>ou</span>
+      </div>
+
+      <!-- Connexion avec Google -->
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="google-button"
+        (click)="loginWithGoogle()"
+      >
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        S'inscrire avec Google
+      </ion-button>
+
+      <!-- Lien vers connexion -->
+      <p class="switch-mode">
+        Déjà un compte ?
+        <a (click)="showRegister = false">Se connecter</a>
+      </p>
+    </div>
+
+    <!-- Option de continuer sans compte -->
+    <div class="guest-option">
+      <p>Tu peux aussi</p>
+      <ion-button
+        expand="block"
+        fill="clear"
+        class="guest-button"
+        (click)="continueAsGuest()"
+      >
+        <ion-icon name="arrow-forward" slot="end"></ion-icon>
+        Continuer sans compte
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
